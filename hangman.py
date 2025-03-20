@@ -1,9 +1,26 @@
 import random
 
-word_list = ["engineer", "alternatively", "camel"]
+def guessCorrect(placeholder, chosen_word, guess):
+    placeholderList = list(placeholder)
 
-def isIntheWord():
-    for i in range(0, len(chosen_word)):
+    for i in range(len(chosen_word)):
         if chosen_word[i] == guess:
-            return 1
-    return 0
+            placeholderList[i] = guess
+
+    return ''.join(placeholderList)
+
+word_list = ["aardvark", "baboon", "camel"]
+
+chosen_word = random.choice(word_list)
+print(chosen_word)
+
+placeholder = ""
+word_length = len(chosen_word)
+for position in range(word_length):
+    placeholder += "_"
+print(placeholder)
+
+while "_" in placeholder:
+    guess = input("Guess a letter: ").lower()
+    placeholder = guessCorrect(placeholder, chosen_word, guess)
+    print(f"{placeholder}")
